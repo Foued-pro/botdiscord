@@ -6,8 +6,8 @@ const client = new Client({
   partials: [Partials.Channel]
 });
 
-const ROLE_ID = '1376527528641953842'; // Remplace par l'ID du rôle à attribuer
-
+const ROLE_ID = '1376527528641953842'; 
+// on voit
 client.once(Events.ClientReady, () => {
   console.log(`Connecté en tant que ${client.user.tag}`);
 });
