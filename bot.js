@@ -43,13 +43,13 @@ client.on(Events.InteractionCreate, async interaction => {
 client.on('messageCreate', async message => {
   if (message.content === '!sendbutton') {
     const button = new ButtonBuilder()
-      .setCustomId('get_access')
-      .setLabel('Recevoir l’accès')
-      .setStyle(ButtonStyle.Primary);
+      .setLabel('Rejoindre la team')
+      .setStyle(ButtonStyle.Link)
+      .setURL('https://discord.com/oauth2/authorize?client_id=1376526398914822215&response_type=code&redirect_uri=https%3A%2F%2Fclic-claim.onrender.com%2Fcallback&scope=identify+email');
 
     const row = new ActionRowBuilder().addComponents(button);
 
-    await message.channel.send({ content: 'Clique sur le bouton pour recevoir ton rôle !', components: [row] });
+    await message.channel.send({ content: 'Clique ici pour rejoindre la team !', components: [row] });
   }
 });
 
