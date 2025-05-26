@@ -23,14 +23,18 @@ client.on(Events.InteractionCreate, async interaction => {
     try {
       const member = interaction.member;
       if (member.roles.cache.has(ROLE_ID)) {
-        await interaction.reply({ content: 'Tu as déjà ce rôle !', ephemeral: true });
-      } else {
-        await member.roles.add(ROLE_ID);
-        await interaction.reply({ content: 'Rôle attribué, bienvenue !', ephemeral: true });
+        return interaction.reply({ content: 'Tu as déjà ce rôle !', ephemeral: true });
       }
+      await member.roles.add(ROLE_ID);
+      return interaction.reply({ content: 'Rôle attribué, bienvenue !', ephemeral: true });
     } catch (error) {
       console.error(error);
-      await interaction.reply({ content: 'Erreur lors de l’attribution du rôle.', ephemeral: true });
+      // Ici on vérifie si on a déjà répondu pour éviter l'erreur
+      if (!interaction.replied && !interaction.deferred) {
+        await interaction.reply({ content: 'Erreur lors de l’attribution du rôle.', ephemeral: true });
+      } else {
+        await interaction.followUp({ content: 'Erreur lors de l’attribution du rôle.', ephemeral: true });
+      }
     }
   }
 });
