@@ -37,7 +37,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
 // Commande pour envoyer le message avec le bouton (à lancer une fois ou via un système de commande)
 client.on('messageCreate', async message => {
-  if (message.content === '!sendbutton' && message.member.permissions.has('Administrator')) {
+  if (message.content === '!sendbutton') {
     const button = new ButtonBuilder()
       .setCustomId('get_access')
       .setLabel('Recevoir l’accès')
